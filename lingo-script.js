@@ -24,5 +24,18 @@ var submit = document.createElement("button")
     submit.innerHTML = "Submit"
     submit.setAttribute('id',"submit")
     submit.setAttribute('onclick',"")
-
+    br()
 var word = words[Math.floor((Math.random() * 478) + 1)]
+var boxDiv = document.createElement("div")
+    page.appendChild(boxDiv)
+    boxDiv.setAttribute('id',"boxDiv")
+for (x=0; x<5; x++) {
+    br()
+    for (i=0; i<5; i++) {
+        var box = document.createElement("div")
+            boxDiv.appendChild(box)
+            box.innerHTML = "?"
+            box.setAttribute('class',"box")
+            box.setAttribute('id',"box"+i)
+    }
+}
