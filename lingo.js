@@ -46,22 +46,21 @@ for (i=0; i<5; i++) {
         box.setAttribute('id',"box"+i)
 }
 
-
-
-
 function checkLetter() {
     document.getElementById("wordInput").disabled
     var wordString = document.querySelector('input[id="wordInput"]').value
     var checkString = document.querySelector('input[id="checkInput"]').value
     var splitWord = wordString.split('')
     var splitCheck = checkString.split('')
+    var winCheck = [false,false,false,false,false]
     document.getElementById("wordInput").disabled = true
     for (i=0; i<5; i++) {
         document.getElementById("box"+i).style.backgroundColor = "white"
-        if (splitWord[i] != undefined) {
+        if (splitCheck[i] != undefined) {
             if (splitWord[i] == splitCheck[i]) {
                 document.getElementById("box"+i).innerHTML = splitCheck[i]
                 document.getElementById("box"+i).style.backgroundColor = "green"
+                winCheck[i] = true
             }
             else if (splitWord[i] != splitCheck[i]) {
                 if (splitCheck[i] == undefined) {
@@ -73,16 +72,25 @@ function checkLetter() {
                         if ( splitCheck[i] == splitWord[x]) {
                             document.getElementById("box"+i).innerHTML = splitCheck[i]
                             document.getElementById("box"+i).style.backgroundColor = "yellow"
+                            document.getElementById('box'+i).style.borderRadius = "90px"
                         }
                         else {
                             document.getElementById("box"+i).innerHTML = splitCheck[i]
                         }
                     }
                 }
-            }
+            }   
+        }
+        else {
+            winCheck[i] = true
         }
     }
+    if (winCheck[0] && winCheck[1] && winCheck[2] && winCheck[3] && winCheck[4] == true) {
+        document.getElementById("checkInput").disabled = true
+        alert('you geussed correctly!')
+    }
 }
+
 function alphaOnly(event) {
     var key = event.keyCode;
     return ((key >= 65 && key <= 90) || key == 8);
