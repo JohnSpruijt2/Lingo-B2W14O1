@@ -42,10 +42,11 @@ for (i=0; i<5; i++) {
         box.setAttribute('id',"box"+i)
 }
 
+var splitWord = word.split('')
+document.getElementById('box0').innerHTML = splitWord[0]
+var winCheck = [false,false,false,false,false]
 function checkletters() {
-    var splitWord = word.split('')
     var splitCheck = (document.querySelector('input[id="checkInput"]').value).split('')
-    var winCheck = [false,false,false,false,false]
     for (i=0; i<5; i++) {
         if (splitCheck != undefined) {
             if (splitWord[i] == splitCheck[i]) {
@@ -98,8 +99,12 @@ function renew() {
                     box.innerHTML = "?"
                     box.setAttribute('class',"box")
                     box.setAttribute('id',"box"+i)
+                if (winCheck[i] == true) {
+                    document.getElementById('box'+i).innerHTML = splitWord[i]
+                }
             }
-        tries++
+            document.getElementById('box0').innerHTML = splitWord[0]
+            tries++
         }
         else {
             for (i=0; i<5; i++) {
