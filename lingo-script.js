@@ -89,7 +89,7 @@ var tries = 1
 var won = false
 function renew() {
     if (won == false) {
-        if (tries <6) {
+        if (tries <5) {
             for (i=0; i<5; i++) {
                 document.getElementById("box"+i).setAttribute('id',"no")
             }
