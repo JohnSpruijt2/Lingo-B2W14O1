@@ -27,4 +27,6 @@ body {
     padding-top: 7px;
     box-sizing: border-box;
     display: inline-block;
+    border: 1px solid black;
+    margin: 2.5px;
 }
