@@ -83,6 +83,7 @@ function checkletters() {
     }
     renew()
 }
+
 var tries = 1
 var won = false
 function renew() {
@@ -105,10 +106,9 @@ function renew() {
                 document.getElementById("box"+i).setAttribute('id',"no")
             }
             alert("you lost!")
-        }
-        
+            document.getElementById("checkInput").disabled = true
+        }   
     }
-    
 }
 
 
