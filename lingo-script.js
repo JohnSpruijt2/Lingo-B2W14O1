@@ -78,22 +78,37 @@ function checkletters() {
     }
     if (winCheck[0] && winCheck[1] && winCheck[2] && winCheck[3] && winCheck[4] == true) {
         document.getElementById("checkInput").disabled = true
+        won = true
         alert('you geussed correctly!')
     }
     renew()
 }
-
+var tries = 1
+var won = false
 function renew() {
-    for (i=0; i<5; i++) {
-        document.getElementById("box"+i).setAttribute('id',"no")
+    if (won == false) {
+        if (tries <6) {
+            for (i=0; i<5; i++) {
+                document.getElementById("box"+i).setAttribute('id',"no")
+            }
+            for (i=0; i<5; i++) {
+                var box = document.createElement("div")
+                    boxDiv.appendChild(box)
+                    box.innerHTML = "?"
+                    box.setAttribute('class',"box")
+                    box.setAttribute('id',"box"+i)
+            }
+        tries++
+        }
+        else {
+            for (i=0; i<5; i++) {
+                document.getElementById("box"+i).setAttribute('id',"no")
+            }
+            alert("you lost!")
+        }
+        
     }
-    for (i=0; i<5; i++) {
-        var box = document.createElement("div")
-            boxDiv.appendChild(box)
-            box.innerHTML = "?"
-            box.setAttribute('class',"box")
-            box.setAttribute('id',"box"+i)
-    }
+    
 }
 
 
