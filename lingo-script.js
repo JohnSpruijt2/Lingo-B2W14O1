@@ -27,7 +27,6 @@ var submit = document.createElement("button")
     br()
 
 var word = words[Math.floor((Math.random() * 478) + 1)]
-console.log(word)
 
 var boxDiv = document.createElement("div")
     page.appendChild(boxDiv)
@@ -41,7 +40,13 @@ for (i=0; i<5; i++) {
         box.setAttribute('class',"box")
         box.setAttribute('id',"box"+i)
 }
-
+for (i=0; i<5; i++) {
+    var box = document.createElement("div")
+        page.appendChild(box)
+        box.innerHTML = "?"
+        box.setAttribute('class',"awnserBox")
+        box.setAttribute('id',"awnserBox"+i)
+}
 var splitWord = word.split('')
 document.getElementById('box0').innerHTML = splitWord[0]
 var winCheck = [false,false,false,false,false]
@@ -80,6 +85,9 @@ function checkletters() {
     if (winCheck[0] && winCheck[1] && winCheck[2] && winCheck[3] && winCheck[4] == true) {
         document.getElementById("checkInput").disabled = true
         won = true
+        for (i=0; i<5; i++) {
+            document.getElementById("awnserBox"+i).innerHTML = splitWord[i]
+        }
         alert('you geussed correctly!')
     }
     renew()
@@ -109,6 +117,9 @@ function renew() {
         else {
             for (i=0; i<5; i++) {
                 document.getElementById("box"+i).setAttribute('id',"no")
+            }
+            for (i=0; i<5; i++) {
+                document.getElementById("awnserBox"+i).innerHTML = splitWord[i]
             }
             alert("you lost!")
             document.getElementById("checkInput").disabled = true
