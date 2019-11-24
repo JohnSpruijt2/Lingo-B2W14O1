@@ -24,7 +24,13 @@ var submit = document.createElement("button")
     submit.innerHTML = "Submit"
     submit.setAttribute('id',"submit")
     submit.setAttribute('onclick',"checkletters()")
-    br()
+br()
+var submit = document.createElement("button")
+    page.appendChild(submit)
+    submit.innerHTML = "Start new Game"
+    submit.setAttribute('id',"newGame")
+    submit.setAttribute('onclick',"location.reload()")
+br()
 
 var word = words[Math.floor((Math.random() * 478) + 1)]
 
@@ -88,6 +94,7 @@ function checkletters() {
         for (i=0; i<5; i++) {
             document.getElementById("awnserBox"+i).innerHTML = splitWord[i]
         }
+        document.getElementById("submit").disabled = true;
         alert('you geussed correctly!')
     }
     renew()
@@ -121,8 +128,9 @@ function renew() {
             for (i=0; i<5; i++) {
                 document.getElementById("awnserBox"+i).innerHTML = splitWord[i]
             }
-            alert("you lost!")
+            document.getElementById("submit").disabled = true;
             document.getElementById("checkInput").disabled = true
+            alert("you lost!")
         }   
     }
 }

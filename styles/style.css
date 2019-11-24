@@ -63,3 +63,12 @@ body {
     position: absolute;
     top: 44px;
 }
+#newGame {
+    width: 120px;
+    height: 25px;
+    border-radius: 20px;
+    background-color: darkgrey;
+    border: solid 1px black;
+    cursor: pointer;
+    margin: 2px;
+}
