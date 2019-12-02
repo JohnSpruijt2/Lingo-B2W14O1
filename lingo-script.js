@@ -56,6 +56,8 @@ for (i=0; i<5; i++) {
 var splitWord = word.split('')
 document.getElementById('box0').innerHTML = splitWord[0]
 var winCheck = [false,false,false,false,false]
+var thisHasBeenDone = [false,false,false,false,false]
+
 function checkletters() {
     var splitCheck = (document.querySelector('input[id="checkInput"]').value).split('')
     for (i=0; i<5; i++) {
@@ -64,30 +66,63 @@ function checkletters() {
                 document.getElementById("box"+i).innerHTML = splitCheck[i]
                 document.getElementById("box"+i).style.backgroundColor = "green"
                 winCheck[i] = true
+                thisHasBeenDone[i] = true
             }
-            else if (splitWord[i] != splitCheck[i]) {
-                if (splitCheck[i] == undefined) {
-                    document.getElementById("box"+i).innerHTML = "?"
-                    document.getElementById("box"+i).style.backgroundColor = "white"
-                }
-                else if (splitCheck[i] != undefined) {
-                    for (x=0; x<5; x++) {
-                        if ( splitCheck[i] == splitWord[x]) {
-                            document.getElementById("box"+i).innerHTML = splitCheck[i]
-                            document.getElementById("box"+i).style.backgroundColor = "yellow"
-                            document.getElementById('box'+i).style.borderRadius = "90px"
-                        }
-                        else {
-                            document.getElementById("box"+i).innerHTML = splitCheck[i]
-                        }
-                    }
-                }
+            
+                
             }   
         }
-        else {
-            winCheck[i] = true
+
+
+for (i=0; i<5; i++) {
+    if (splitWord[i] != splitCheck[i]) {
+        if (splitCheck[i] == undefined) {
+            document.getElementById("box"+i).innerHTML = "?"
+            document.getElementById("box"+i).style.backgroundColor = "white"
         }
     }
+}
+
+for (i=0; i<5; i++) {
+    if (splitCheck[i] == splitCheck[i+1] || splitCheck[i] == splitCheck[i+2] || splitCheck[i] == splitCheck[i+3] || splitCheck[i] == splitCheck[i+4] || splitCheck[i] == splitCheck[i-1] || splitCheck[i] == splitCheck[i-2]  || splitCheck[i] == splitCheck[i-3] || splitCheck[i] == splitCheck[i-4] ) {
+
+        if (splitCheck[i] == splitWord[i+1] || splitCheck[i] == splitWord[i+2] || splitCheck[i] == splitWord[i+3] || splitCheck[i] == splitWord[i+4] || splitCheck[i] == splitWord[i-1] || splitCheck[i] == splitWord[i-2]  || splitCheck[i] == splitWord[i-3] || splitCheck[i] == splitWord[i-4] ) {
+            if (thisHasBeenDone[i] != true) {
+            if (splitCheck[i] != undefined) {
+                for (x=0; x<5; x++) {
+                    if ( splitCheck[i] == splitWord[x]) {
+                        document.getElementById("box"+i).innerHTML = splitCheck[i]
+                        document.getElementById("box"+i).style.backgroundColor = "yellow"
+                        document.getElementById('box'+i).style.borderRadius = "90px"
+                    }
+                    else {
+                        document.getElementById("box"+i).innerHTML = splitCheck[i]
+                    }
+                }
+            }
+        }
+        }
+
+        document.getElementById("box"+i).innerHTML = splitCheck[i]
+    }
+    else {
+        if (thisHasBeenDone[i] != true) {
+            if (splitCheck[i] != undefined) {
+                for (x=0; x<5; x++) {
+                    if ( splitCheck[i] == splitWord[x]) {
+                        document.getElementById("box"+i).innerHTML = splitCheck[i]
+                        document.getElementById("box"+i).style.backgroundColor = "yellow"
+                        document.getElementById('box'+i).style.borderRadius = "90px"
+                    }
+                    else {
+                        document.getElementById("box"+i).innerHTML = splitCheck[i]
+                    }
+                }
+            }
+        }
+    }
+}
+    
     if (winCheck[0] && winCheck[1] && winCheck[2] && winCheck[3] && winCheck[4] == true) {
         document.getElementById("checkInput").disabled = true
         won = true
@@ -96,6 +131,9 @@ function checkletters() {
         }
         document.getElementById("submit").disabled = true;
         alert('you geussed correctly!')
+    }
+    for (i=0; i<5; i++) {
+        thisHasBeenDone[i] = false
     }
     renew()
 }
